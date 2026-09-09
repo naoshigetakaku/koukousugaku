@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高校数学 公式・定理集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000000;
+  --paper:#ffffff;
+  --muted:#767676;
+  --rule:#dcdcdc;
+  --rule-soft:#eeeeee;
+  --fill:#f4f4f4;
+  --measure:52rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",-apple-system,"Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- masthead ---------- */
+.masthead{
+  border-bottom:1px solid var(--ink);
+  padding:3.5rem 1.5rem 1.25rem;
+}
+.masthead-inner{max-width:72rem;margin:0 auto}
+h1{
+  font-size:clamp(1.85rem,4.2vw,2.6rem);
+  font-weight:600;
+  letter-spacing:-0.025em;
+  line-height:1.15;
+  margin:0 0 .5rem;
+}
+.lede{
+  max-width:38rem;
+  margin:0 0 2rem;
+  color:var(--muted);
+  font-size:.9375rem;
+}
+.tools{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+#q{
+  flex:1 1 20rem;
+  font:inherit;
+  font-size:1.0625rem;
+  color:var(--ink);
+  background:transparent;
+  border:0;
+  border-bottom:1px solid var(--ink);
+  padding:.4rem 0;
+  border-radius:0;
+}
+#q::placeholder{color:var(--muted)}
+#q:focus{outline:0;border-bottom-width:2px;padding-bottom:calc(.4rem - 1px)}
+#count{font-size:.8125rem;color:var(--muted);white-space:nowrap}
+
+.legend{
+  margin-top:1.75rem;
+  border-left:2px solid var(--ink);
+  padding:.15rem 0 .15rem 1rem;
+  font-size:.8125rem;
+  color:var(--muted);
+  max-width:46rem;
+}
+.legend b{color:var(--ink);font-weight:500}
+
+/* ---------- shell ---------- */
+.shell{
+  max-width:72rem;
+  margin:0 auto;
+  padding:0 1.5rem 6rem;
+  display:grid;
+  grid-template-columns:13rem minmax(0,1fr);
+  gap:3rem;
+}
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:0}
+}
+
+/* ---------- table of contents ---------- */
+.toc{
+  position:sticky;
+  top:0;
+  align-self:start;
+  padding-top:2.5rem;
+  font-size:.8125rem;
+  max-height:100vh;
+  overflow-y:auto;
+}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{
+  display:block;
+  padding:.3rem 0 .3rem 1.6rem;
+  text-indent:-1.6rem;
+  color:var(--muted);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+.toc a::before{
+  content:counter(t,decimal-leading-zero);
+  display:inline-block;
+  width:1.6rem;
+  text-indent:0;
+  color:var(--rule);
+}
+.toc a:hover{color:var(--ink)}
+.toc a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.toc a.here{color:var(--ink);font-weight:500}
+.toc a.here::before{color:var(--ink)}
+@media (max-width:900px){
+  .toc{
+    position:static;max-height:none;
+    padding:1.5rem 0;border-bottom:1px solid var(--rule);
+  }
+  .toc ol{columns:2;column-gap:1.5rem}
+}
+
+/* ---------- sections ---------- */
+main{padding-top:2.5rem;max-width:var(--measure)}
+section{margin-bottom:3.5rem;scroll-margin-top:1rem}
+section > h2{
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:-0.01em;
+  margin:0;
+  padding-bottom:.6rem;
+  border-bottom:2px solid var(--ink);
+}
+.sub{
+  font-size:.8125rem;
+  font-weight:500;
+  color:var(--muted);
+  margin:2rem 0 0;
+  padding-bottom:.35rem;
+  border-bottom:1px solid var(--rule);
+}
+
+/* ---------- item ---------- */
+.item{
+  display:grid;
+  grid-template-columns:11rem minmax(0,1fr);
+  gap:0 1.75rem;
+  padding:1rem 0;
+  border-bottom:1px solid var(--rule-soft);
+}
+.item:last-child{border-bottom:0}
+.k{
+  font-size:.8125rem;
+  font-weight:500;
+  color:var(--muted);
+  text-align:right;
+  padding-top:.35rem;
+  line-height:1.45;
+}
+.v{min-width:0}
+@media (max-width:640px){
+  .item{grid-template-columns:minmax(0,1fr);gap:.35rem}
+  .k{text-align:left;padding-top:0}
+}
+
+.eq{
+  font-size:1.0625rem;
+  line-height:2.05;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding-bottom:.1rem;
+}
+.eq + .eq{margin-top:.15rem}
+.cond{
+  margin:.45rem 0 0;
+  font-size:.8125rem;
+  color:var(--muted);
+  line-height:1.55;
+}
+.cond b{color:var(--ink);font-weight:500}
+
+/* ---------- math primitives ---------- */
+.f{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  vertical-align:middle;
+  margin:0 .28em;
+  line-height:1.25;
+  font-size:.94em;
+}
+.f > span{padding:0 .32em}
+.f > span:last-child{border-top:1px solid currentColor}
+.sq{border-top:1px solid currentColor;padding:0 .2em 0 .06em;margin-left:-.02em}
+.vec{position:relative;display:inline-block}
+.vec::before{
+  content:"\2192";
+  position:absolute;
+  top:-.72em;left:50%;
+  transform:translateX(-50%) scaleX(.85);
+  font-size:.72em;line-height:1;
+}
+.ov{text-decoration:overline;text-decoration-thickness:1px}
+.big{font-size:1.35em;vertical-align:-.22em;line-height:1}
+.sp{display:inline-block;width:1.4em}
+
+/* ---------- misc ---------- */
+.empty{color:var(--muted);font-size:.875rem;padding:2rem 0;display:none}
+.empty.show{display:block}
+footer{
+  max-width:72rem;margin:0 auto;padding:1.5rem;
+  border-top:1px solid var(--rule);
+  font-size:.75rem;color:var(--muted);
+}
+a.top{color:var(--muted)}
+
+@media print{
+  .toc,.tools,.masthead{break-inside:avoid}
+  .toc,.tools{display:none}
+  .shell{grid-template-columns:1fr;padding:0}
+  section{break-inside:auto}
+  .item{break-inside:avoid}
+}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1>高校数学 公式・定理集</h1>
+    <p class="lede">数学 I・A・II・B・III の主要な公式と定理を、分野ごとに一覧できる形でまとめたもの。検索欄に語句を入力すると、該当する項目だけが残る。</p>
+    <div class="tools">
+      <input id="q" type="search" placeholder="検索（例: 加法定理 / 点と直線の距離 / cosine rule）" autocomplete="off" aria-label="公式を検索">
+      <span id="count"></span>
+    </div>
+    <p class="legend"><b>表記について</b>　方程式の解は <b>s₁, s₂, s₃</b> で表す（α・a などとの混同を避けるため）。角は θ、係数は a, b, c, d、点の座標は (x₁, y₁) を用いる。ベクトルは <span class="vec">a</span> のように矢印を付す。n は自然数、e は自然対数の底、log の底が省略された場合は e とする。</p>
+  </div>
+</header>
+
+<div class="shell">
+
+<nav class="toc" aria-label="目次">
+  <ol>
+    <li><a href="#expand">展開・因数分解・不等式</a></li>
+    <li><a href="#quad">二次関数と二次方程式</a></li>
+    <li><a href="#coef">解と係数の関係・高次方程式</a></li>
+    <li><a href="#coord">図形と方程式</a></li>
+    <li><a href="#trig">三角比・三角関数</a></li>
+    <li><a href="#explog">指数関数・対数関数</a></li>
+    <li><a href="#seq">数列</a></li>
+    <li><a href="#vec">ベクトル</a></li>
+    <li><a href="#diff">微分法</a></li>
+    <li><a href="#integ">積分法</a></li>
+    <li><a href="#lim">極限（数学III）</a></li>
+    <li><a href="#cplx">複素数平面・二次曲線</a></li>
+    <li><a href="#prob">場合の数と確率</a></li>
+    <li><a href="#numth">整数の性質</a></li>
+    <li><a href="#plane">平面図形の定理</a></li>
+  </ol>
+</nav>
+
+<main>
+<p class="empty" id="empty">該当する項目がない。別の語句を試すこと。</p>
+
+<!-- ============ 1 ============ -->
+<section id="expand">
+<h2>展開・因数分解・不等式</h2>
+
+<div class="item" data-k="expansion square">
+  <div class="k">二乗の展開</div>
+  <div class="v">
+    <div class="eq">(a ± b)² = a² ± 2ab + b²</div>
+    <div class="eq">(a + b)(a − b) = a² − b²</div>
+    <div class="eq">(a + b + c)² = a² + b² + c² + 2ab + 2bc + 2ca</div>
+  </div>
+</div>
+
+<div class="item" data-k="cube expansion">
+  <div class="k">三乗の展開</div>
+  <div class="v">
+    <div class="eq">(a ± b)³ = a³ ± 3a²b + 3ab² ± b³</div>
+    <div class="eq">a³ ± b³ = (a ± b)(a² ∓ ab + b²)</div>
+    <div class="eq">a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca)</div>
+  </div>
+</div>
+
+<div class="item" data-k="factorisation quadratic tasuki">
+  <div class="k">たすき掛け</div>
+  <div class="v">
+    <div class="eq">acx² + (ad + bc)x + bd = (ax + b)(cx + d)</div>
+  </div>
+</div>
+
+<div class="item" data-k="binomial theorem pascal">
+  <div class="k">二項定理</div>
+  <div class="v">
+    <div class="eq">(a + b)<sup>n</sup> = <span class="big">Σ</span><sub>r=0</sub><sup>n</sup> <sub>n</sub>C<sub>r</sub> a<sup>n−r</sup> b<sup>r</sup></div>
+    <p class="cond">一般項は <b><sub>n</sub>C<sub>r</sub> a<sup>n−r</sup>b<sup>r</sup></b>。a = b = 1 とすれば Σ<sub>n</sub>C<sub>r</sub> = 2<sup>n</sup>、a = 1, b = −1 とすれば交代和が 0 になる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="multinomial theorem">
+  <div class="k">多項定理</div>
+  <div class="v">
+    <div class="eq">(a + b + c)<sup>n</sup> の a<sup>p</sup>b<sup>q</sup>c<sup>r</sup> の係数 = <span class="f"><span>n!</span><span>p! q! r!</span></span></div>
+    <p class="cond">p + q + r = n。</p>
+  </div>
+</div>
+
+<div class="item" data-k="absolute value inequality">
+  <div class="k">絶対値</div>
+  <div class="v">
+    <div class="eq">|x| &lt; a ⇔ −a &lt; x &lt; a<span class="sp"></span>|x| &gt; a ⇔ x &lt; −a または a &lt; x</div>
+    <div class="eq">|a| − |b| ≦ |a + b| ≦ |a| + |b|</div>
+    <p class="cond">a &gt; 0 とする。三角不等式の等号は ab ≧ 0 のとき。</p>
+  </div>
+</div>
+
+<div class="item" data-k="AM GM inequality mean">
+  <div class="k">相加相乗平均</div>
+  <div class="v">
+    <div class="eq"><span class="f"><span>a + b</span><span>2</span></span> ≧ √<span class="sq">ab</span><span class="sp"></span><span class="f"><span>a + b + c</span><span>3</span></span> ≧ <sup>3</sup>√<span class="sq">abc</span></div>
+    <p class="cond">a, b, c &gt; 0。等号成立は <b>a = b</b>（三変数では a = b = c）のとき。最小値を問う問題で頻出。</p>
+  </div>
+</div>
+
+<div class="item" data-k="cauchy schwarz inequality">
+  <div class="k">コーシー・シュワルツ<br>の不等式</div>
+  <div class="v">
+    <div class="eq">(a² + b²)(x² + y²) ≧ (ax + by)²</div>
+    <p class="cond">等号成立は ay = bx のとき。一般に (Σa<sub>k</sub>²)(Σb<sub>k</sub>²) ≧ (Σa<sub>k</sub>b<sub>k</sub>)²。</p>
+  </div>
+</div>
+
+<div class="item" data-k="identity coefficient comparison">
+  <div class="k">恒等式</div>
+  <div class="v">
+    <div class="eq">ax² + bx + c = 0 がすべての x で成立 ⇔ a = b = c = 0</div>
+    <p class="cond">係数比較法、または数値代入法（代入後は十分性の確認が必要）。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="quad">
+<h2>二次関数と二次方程式</h2>
+
+<div class="item" data-k="vertex completing the square">
+  <div class="k">平方完成</div>
+  <div class="v">
+    <div class="eq">y = ax² + bx + c = a(x + <span class="f"><span>b</span><span>2a</span></span>)² − <span class="f"><span>b² − 4ac</span><span>4a</span></span></div>
+    <p class="cond">頂点 <b>(−b/2a, −(b²−4ac)/4a)</b>、軸は x = −b/2a。</p>
+  </div>
+</div>
+
+<div class="item" data-k="quadratic formula solution">
+  <div class="k">解の公式</div>
+  <div class="v">
+    <div class="eq">x = <span class="f"><span>−b ± √<span class="sq">b² − 4ac</span></span><span>2a</span></span><span class="sp"></span>b = 2b′ のとき　x = <span class="f"><span>−b′ ± √<span class="sq">b′² − ac</span></span><span>a</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="discriminant">
+  <div class="k">判別式</div>
+  <div class="v">
+    <div class="eq">D = b² − 4ac</div>
+    <p class="cond">D &gt; 0 で異なる二実数解、D = 0 で重解、D &lt; 0 で異なる二虚数解。x 軸との共有点の個数に対応する。</p>
+  </div>
+</div>
+
+<div class="item" data-k="sign of roots range">
+  <div class="k">解の存在範囲</div>
+  <div class="v">
+    <div class="eq">f(x) = ax² + bx + c (a &gt; 0) の 2 解がともに正 ⇔ D ≧ 0 かつ 軸 &gt; 0 かつ f(0) &gt; 0</div>
+    <p class="cond">判別式・軸の位置・端点の符号の 3 条件で捉える。区間 (p, q) に 1 解のみなら <b>f(p)f(q) &lt; 0</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="max min quadratic">
+  <div class="k">最大・最小</div>
+  <div class="v">
+    <div class="eq">定義域 p ≦ x ≦ q の二次関数は、軸の位置と区間の位置関係で場合分け</div>
+    <p class="cond">軸が区間内か、左外か、右外かの 3 通り。最大値は区間の両端で比較する。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="coef">
+<h2>解と係数の関係・高次方程式</h2>
+
+<div class="item" data-k="vieta quadratic sum product roots">
+  <div class="k">解と係数の関係<br>（二次）</div>
+  <div class="v">
+    <div class="eq">ax² + bx + c = 0 の解を s₁, s₂ とすると</div>
+    <div class="eq">s₁ + s₂ = −<span class="f"><span>b</span><span>a</span></span><span class="sp"></span>s₁s₂ = <span class="f"><span>c</span><span>a</span></span></div>
+    <p class="cond">逆に、和が p、積が q である 2 数を解にもつ二次方程式は <b>x² − px + q = 0</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="vieta cubic sum product roots">
+  <div class="k">解と係数の関係<br>（三次）</div>
+  <div class="v">
+    <div class="eq">ax³ + bx² + cx + d = 0 の解を s₁, s₂, s₃ とすると</div>
+    <div class="eq">s₁ + s₂ + s₃ = −<span class="f"><span>b</span><span>a</span></span><span class="sp"></span>s₁s₂ + s₂s₃ + s₃s₁ = <span class="f"><span>c</span><span>a</span></span><span class="sp"></span>s₁s₂s₃ = −<span class="f"><span>d</span><span>a</span></span></div>
+    <p class="cond">符号は <b>−, +, −</b> と交互になる。四次以降も同様に交代する（ヴィエトの公式）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="symmetric function roots">
+  <div class="k">対称式の変形</div>
+  <div class="v">
+    <div class="eq">s₁² + s₂² = (s₁ + s₂)² − 2s₁s₂</div>
+    <div class="eq">s₁³ + s₂³ = (s₁ + s₂)³ − 3s₁s₂(s₁ + s₂)</div>
+    <div class="eq">(s₁ − s₂)² = (s₁ + s₂)² − 4s₁s₂ = <span class="f"><span>D</span><span>a²</span></span></div>
+    <div class="eq"><span class="f"><span>1</span><span>s₁</span></span> + <span class="f"><span>1</span><span>s₂</span></span> = <span class="f"><span>s₁ + s₂</span><span>s₁s₂</span></span></div>
+    <p class="cond">三変数では s₁² + s₂² + s₃² = (s₁+s₂+s₃)² − 2(s₁s₂+s₂s₃+s₃s₁)。</p>
+  </div>
+</div>
+
+<div class="item" data-k="remainder theorem factor theorem">
+  <div class="k">剰余定理・因数定理</div>
+  <div class="v">
+    <div class="eq">P(x) を x − k で割った余りは P(k)</div>
+    <div class="eq">P(k) = 0 ⇔ P(x) は x − k を因数にもつ</div>
+    <p class="cond">ax − b で割った余りは P(b/a)。二次式で割った余りは一次以下なので <b>px + q</b> とおいて連立させる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="rational root theorem">
+  <div class="k">有理数解の候補</div>
+  <div class="v">
+    <div class="eq">整数係数の a<sub>n</sub>x<sup>n</sup> + … + a₀ = 0 の有理数解は　x = ±<span class="f"><span>a₀ の約数</span><span>a<sub>n</sub> の約数</span></span></div>
+    <p class="cond">因数定理を使う際、代入すべき値を絞り込むために用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="complex conjugate root theorem">
+  <div class="k">虚数解の性質</div>
+  <div class="v">
+    <div class="eq">実数係数の方程式が s₁ = p + qi を解にもつ ⇒ <span class="ov">s₁</span> = p − qi も解</div>
+    <p class="cond">共役複素数は必ず対で現れる。ゆえに奇数次方程式は少なくとも 1 つの実数解をもつ。</p>
+  </div>
+</div>
+
+<div class="item" data-k="omega cube root of unity">
+  <div class="k">1 の三乗根 ω</div>
+  <div class="v">
+    <div class="eq">ω³ = 1<span class="sp"></span>ω² + ω + 1 = 0<span class="sp"></span>ω = <span class="f"><span>−1 ± √<span class="sq">3</span> i</span><span>2</span></span></div>
+    <p class="cond">x³ = 1 の虚数解。次数下げに用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="complex number operations">
+  <div class="k">複素数の計算</div>
+  <div class="v">
+    <div class="eq">z = a + bi のとき　<span class="ov">z</span> = a − bi<span class="sp"></span>z<span class="ov">z</span> = a² + b² = |z|²</div>
+    <div class="eq">z + <span class="ov">z</span> = 2a（実数）<span class="sp"></span>z − <span class="ov">z</span> = 2bi（純虚数）</div>
+    <p class="cond">z が実数 ⇔ z = <span class="ov">z</span>、z が純虚数 ⇔ z = −<span class="ov">z</span> かつ z ≠ 0。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="coord">
+<h2>図形と方程式</h2>
+
+<p class="sub">点と直線</p>
+
+<div class="item" data-k="distance between two points">
+  <div class="k">2 点間の距離</div>
+  <div class="v">
+    <div class="eq">AB = √<span class="sq">(x₂ − x₁)² + (y₂ − y₁)²</span></div>
+    <p class="cond">空間では √<span class="sq">(x₂−x₁)² + (y₂−y₁)² + (z₂−z₁)²</span>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="internal external division point">
+  <div class="k">内分点・外分点</div>
+  <div class="v">
+    <div class="eq">m : n に内分　( <span class="f"><span>nx₁ + mx₂</span><span>m + n</span></span> , <span class="f"><span>ny₁ + my₂</span><span>m + n</span></span> )</div>
+    <div class="eq">m : n に外分　( <span class="f"><span>−nx₁ + mx₂</span><span>m − n</span></span> , <span class="f"><span>−ny₁ + my₂</span><span>m − n</span></span> )</div>
+    <p class="cond">外分は n を −n に置き換えたもの。</p>
+  </div>
+</div>
+
+<div class="item" data-k="centroid triangle">
+  <div class="k">三角形の重心</div>
+  <div class="v">
+    <div class="eq">G ( <span class="f"><span>x₁ + x₂ + x₃</span><span>3</span></span> , <span class="f"><span>y₁ + y₂ + y₃</span><span>3</span></span> )</div>
+  </div>
+</div>
+
+<div class="item" data-k="equation of line">
+  <div class="k">直線の方程式</div>
+  <div class="v">
+    <div class="eq">傾き m・点 (x₁, y₁) 通過　y − y₁ = m(x − x₁)</div>
+    <div class="eq">2 点通過　y − y₁ = <span class="f"><span>y₂ − y₁</span><span>x₂ − x₁</span></span> (x − x₁)</div>
+    <div class="eq">切片形　<span class="f"><span>x</span><span>a</span></span> + <span class="f"><span>y</span><span>b</span></span> = 1</div>
+  </div>
+</div>
+
+<div class="item" data-k="parallel perpendicular condition lines">
+  <div class="k">平行・垂直条件</div>
+  <div class="v">
+    <div class="eq">平行　m₁ = m₂<span class="sp"></span>垂直　m₁m₂ = −1</div>
+    <div class="eq">a₁x + b₁y + c₁ = 0 と a₂x + b₂y + c₂ = 0 について</div>
+    <div class="eq">平行　a₁b₂ − a₂b₁ = 0<span class="sp"></span>垂直　a₁a₂ + b₁b₂ = 0</div>
+  </div>
+</div>
+
+<div class="item" data-k="distance from point to line">
+  <div class="k">点と直線の距離</div>
+  <div class="v">
+    <div class="eq">d = <span class="f"><span>|ax₁ + by₁ + c|</span><span>√<span class="sq">a² + b²</span></span></span></div>
+    <p class="cond">点 (x₁, y₁) と直線 ax + by + c = 0 の距離。原点からなら <b>|c| / √(a²+b²)</b>。空間の平面 ax+by+cz+d = 0 でも同型で <b>|ax₁+by₁+cz₁+d| / √(a²+b²+c²)</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="triangle area coordinates">
+  <div class="k">三角形の面積<br>（座標）</div>
+  <div class="v">
+    <div class="eq">S = <span class="f"><span>1</span><span>2</span></span> |x₁y₂ − x₂y₁|</div>
+    <p class="cond">O(0,0), A(x₁,y₁), B(x₂,y₂) の場合。一般の 3 点なら 1 点を原点に平行移動して適用する。</p>
+  </div>
+</div>
+
+<div class="item" data-k="family of lines pencil">
+  <div class="k">直線束</div>
+  <div class="v">
+    <div class="eq">(a₁x + b₁y + c₁) + k(a₂x + b₂y + c₂) = 0</div>
+    <p class="cond">2 直線の交点を通る直線の全体（ただし 2 本目自身を除く）。交点を求めずに済む。</p>
+  </div>
+</div>
+
+<p class="sub">円</p>
+
+<div class="item" data-k="equation of circle">
+  <div class="k">円の方程式</div>
+  <div class="v">
+    <div class="eq">(x − p)² + (y − q)² = r²</div>
+    <div class="eq">x² + y² + lx + my + n = 0 　⇔　中心 (−<span class="f"><span>l</span><span>2</span></span>, −<span class="f"><span>m</span><span>2</span></span>)、半径 √<span class="sq"><span class="f"><span>l² + m²</span><span>4</span></span> − n</span></div>
+    <p class="cond">半径が実数であるためには l² + m² − 4n &gt; 0 が必要。</p>
+  </div>
+</div>
+
+<div class="item" data-k="tangent line to circle">
+  <div class="k">円の接線</div>
+  <div class="v">
+    <div class="eq">x² + y² = r² 上の点 (x₁, y₁) で　x₁x + y₁y = r²</div>
+    <div class="eq">(x−p)² + (y−q)² = r² 上の点で　(x₁−p)(x−p) + (y₁−q)(y−q) = r²</div>
+    <p class="cond">円外の点から引く接線は、中心と直線の距離 = 半径 の条件で求める。</p>
+  </div>
+</div>
+
+<div class="item" data-k="circle line intersection">
+  <div class="k">円と直線の位置関係</div>
+  <div class="v">
+    <div class="eq">中心と直線の距離 d、半径 r</div>
+    <div class="eq">d &lt; r 　2 点で交わる<span class="sp"></span>d = r 　接する<span class="sp"></span>d &gt; r 　共有点なし</div>
+    <p class="cond">弦の長さは <b>2√(r² − d²)</b>。判別式でも判定できるが、距離公式の方が計算が軽い。</p>
+  </div>
+</div>
+
+<div class="item" data-k="two circles position">
+  <div class="k">2 円の位置関係</div>
+  <div class="v">
+    <div class="eq">中心間距離 d、半径 r₁ &gt; r₂</div>
+    <div class="eq">d &gt; r₁ + r₂ 離れる<span class="sp"></span>d = r₁ + r₂ 外接<span class="sp"></span>r₁ − r₂ &lt; d &lt; r₁ + r₂ 交わる</div>
+    <div class="eq">d = r₁ − r₂ 内接<span class="sp"></span>d &lt; r₁ − r₂ 内包</div>
+  </div>
+</div>
+
+<div class="item" data-k="radical axis two circles">
+  <div class="k">2 円の交点を通る図形</div>
+  <div class="v">
+    <div class="eq">C₁ + kC₂ = 0</div>
+    <p class="cond">C₁, C₂ を「= 0」の形にした円の式とする。k = −1 のとき二次の項が消え、2 交点を通る<b>直線</b>（共通弦）の式になる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="locus region inequality">
+  <div class="k">軌跡と領域</div>
+  <div class="v">
+    <div class="eq">y &gt; f(x) は曲線の上側、y &lt; f(x) は下側</div>
+    <div class="eq">(x−p)² + (y−q)² &lt; r² は円の内部</div>
+    <p class="cond">軌跡は、動点を (x, y) とおき媒介変数を消去する。得られた図形が条件を満たすかの逆の確認を忘れないこと。アポロニウスの円は <b>AP : BP = m : n</b> の軌跡。</p>
+  </div>
+</div>
+</section>
+<!-- ============ 5 ============ -->
+<section id="trig">
+<h2>三角比・三角関数</h2>
+
+<p class="sub">相互関係と対称性</p>
+
+<div class="item" data-k="pythagorean identity">
+  <div class="k">相互関係</div>
+  <div class="v">
+    <div class="eq">sin²θ + cos²θ = 1<span class="sp"></span>tanθ = <span class="f"><span>sinθ</span><span>cosθ</span></span><span class="sp"></span>1 + tan²θ = <span class="f"><span>1</span><span>cos²θ</span></span></div>
+    <div class="eq">1 + <span class="f"><span>1</span><span>tan²θ</span></span> = <span class="f"><span>1</span><span>sin²θ</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="negative angle supplementary complementary">
+  <div class="k">角の変換</div>
+  <div class="v">
+    <div class="eq">sin(−θ) = −sinθ<span class="sp"></span>cos(−θ) = cosθ<span class="sp"></span>tan(−θ) = −tanθ</div>
+    <div class="eq">sin(π − θ) = sinθ<span class="sp"></span>cos(π − θ) = −cosθ</div>
+    <div class="eq">sin(<span class="f"><span>π</span><span>2</span></span> − θ) = cosθ<span class="sp"></span>cos(<span class="f"><span>π</span><span>2</span></span> − θ) = sinθ</div>
+    <div class="eq">sin(θ + <span class="f"><span>π</span><span>2</span></span>) = cosθ<span class="sp"></span>cos(θ + <span class="f"><span>π</span><span>2</span></span>) = −sinθ</div>
+  </div>
+</div>
+
+<div class="item" data-k="special angles values table">
+  <div class="k">代表的な値</div>
+  <div class="v">
+    <div class="eq">sin 30° = <span class="f"><span>1</span><span>2</span></span><span class="sp"></span>sin 45° = <span class="f"><span>1</span><span>√<span class="sq">2</span></span></span><span class="sp"></span>sin 60° = <span class="f"><span>√<span class="sq">3</span></span><span>2</span></span></div>
+    <div class="eq">tan 30° = <span class="f"><span>1</span><span>√<span class="sq">3</span></span></span><span class="sp"></span>tan 45° = 1<span class="sp"></span>tan 60° = √<span class="sq">3</span></div>
+    <p class="cond">弧度法では 30° = π/6、45° = π/4、60° = π/3、90° = π/2。</p>
+  </div>
+</div>
+
+<p class="sub">三角形への応用</p>
+
+<div class="item" data-k="sine rule law of sines circumradius">
+  <div class="k">正弦定理</div>
+  <div class="v">
+    <div class="eq"><span class="f"><span>a</span><span>sin A</span></span> = <span class="f"><span>b</span><span>sin B</span></span> = <span class="f"><span>c</span><span>sin C</span></span> = 2R</div>
+    <p class="cond">R は外接円の半径。辺と対角の組が与えられたときに用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="cosine rule law of cosines">
+  <div class="k">余弦定理</div>
+  <div class="v">
+    <div class="eq">a² = b² + c² − 2bc cos A</div>
+    <div class="eq">cos A = <span class="f"><span>b² + c² − a²</span><span>2bc</span></span></div>
+    <p class="cond">2 辺と挟角、または 3 辺が与えられたときに用いる。A = 90° のとき三平方の定理に一致する。</p>
+  </div>
+</div>
+
+<div class="item" data-k="area of triangle heron incircle">
+  <div class="k">三角形の面積</div>
+  <div class="v">
+    <div class="eq">S = <span class="f"><span>1</span><span>2</span></span> bc sin A = <span class="f"><span>abc</span><span>4R</span></span> = rs</div>
+    <div class="eq">ヘロンの公式　S = √<span class="sq">s(s−a)(s−b)(s−c)</span>　( s = <span class="f"><span>a+b+c</span><span>2</span></span> )</div>
+    <p class="cond">r は内接円の半径、s は半周長。</p>
+  </div>
+</div>
+
+<p class="sub">加法定理とその派生</p>
+
+<div class="item" data-k="addition theorem compound angle">
+  <div class="k">加法定理</div>
+  <div class="v">
+    <div class="eq">sin(A ± B) = sin A cos B ± cos A sin B</div>
+    <div class="eq">cos(A ± B) = cos A cos B ∓ sin A sin B</div>
+    <div class="eq">tan(A ± B) = <span class="f"><span>tan A ± tan B</span><span>1 ∓ tan A tan B</span></span></div>
+    <p class="cond">cos の符号だけが反転する点に注意。2 直線のなす角は tan の加法定理から <b>tanθ = |(m₁−m₂)/(1+m₁m₂)|</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="double angle formula">
+  <div class="k">倍角の公式</div>
+  <div class="v">
+    <div class="eq">sin 2θ = 2 sinθ cosθ</div>
+    <div class="eq">cos 2θ = cos²θ − sin²θ = 2cos²θ − 1 = 1 − 2sin²θ</div>
+    <div class="eq">tan 2θ = <span class="f"><span>2 tanθ</span><span>1 − tan²θ</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="half angle formula power reduction">
+  <div class="k">半角の公式</div>
+  <div class="v">
+    <div class="eq">sin²<span class="f"><span>θ</span><span>2</span></span> = <span class="f"><span>1 − cosθ</span><span>2</span></span><span class="sp"></span>cos²<span class="f"><span>θ</span><span>2</span></span> = <span class="f"><span>1 + cosθ</span><span>2</span></span></div>
+    <div class="eq">tan²<span class="f"><span>θ</span><span>2</span></span> = <span class="f"><span>1 − cosθ</span><span>1 + cosθ</span></span></div>
+    <p class="cond">次数下げの形 <b>sin²θ = (1 − cos2θ)/2</b>、<b>cos²θ = (1 + cos2θ)/2</b> は積分で必須。</p>
+  </div>
+</div>
+
+<div class="item" data-k="triple angle formula">
+  <div class="k">三倍角の公式</div>
+  <div class="v">
+    <div class="eq">sin 3θ = 3 sinθ − 4 sin³θ</div>
+    <div class="eq">cos 3θ = 4 cos³θ − 3 cosθ</div>
+    <p class="cond">「サイン引く、コサイン足す」ではなく、係数 3 と 4 の位置で覚えるとよい。</p>
+  </div>
+</div>
+
+<div class="item" data-k="weierstrass substitution tangent half angle">
+  <div class="k">t = tan(θ/2) 置換</div>
+  <div class="v">
+    <div class="eq">sinθ = <span class="f"><span>2t</span><span>1 + t²</span></span><span class="sp"></span>cosθ = <span class="f"><span>1 − t²</span><span>1 + t²</span></span><span class="sp"></span>tanθ = <span class="f"><span>2t</span><span>1 − t²</span></span></div>
+    <p class="cond">三角関数の有理式を t の有理式に変換できる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="harmonic addition synthesis">
+  <div class="k">三角関数の合成</div>
+  <div class="v">
+    <div class="eq">a sinθ + b cosθ = √<span class="sq">a² + b²</span> sin(θ + φ)</div>
+    <div class="eq">cos φ = <span class="f"><span>a</span><span>√<span class="sq">a²+b²</span></span></span>,　sin φ = <span class="f"><span>b</span><span>√<span class="sq">a²+b²</span></span></span>　すなわち tan φ = <span class="f"><span>b</span><span>a</span></span></div>
+    <p class="cond">最大値 √(a²+b²)、最小値 −√(a²+b²)。cos で合成すれば a cosθ + b sinθ = √(a²+b²) cos(θ − φ)。</p>
+  </div>
+</div>
+
+<div class="item" data-k="product to sum formula">
+  <div class="k">積を和に直す公式</div>
+  <div class="v">
+    <div class="eq">sin A cos B = <span class="f"><span>1</span><span>2</span></span>{ sin(A+B) + sin(A−B) }</div>
+    <div class="eq">cos A cos B = <span class="f"><span>1</span><span>2</span></span>{ cos(A+B) + cos(A−B) }</div>
+    <div class="eq">sin A sin B = −<span class="f"><span>1</span><span>2</span></span>{ cos(A+B) − cos(A−B) }</div>
+    <p class="cond">加法定理の 2 式を辺々加減して導ける。積の積分で用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="sum to product formula">
+  <div class="k">和を積に直す公式</div>
+  <div class="v">
+    <div class="eq">sin A + sin B = 2 sin<span class="f"><span>A+B</span><span>2</span></span> cos<span class="f"><span>A−B</span><span>2</span></span></div>
+    <div class="eq">sin A − sin B = 2 cos<span class="f"><span>A+B</span><span>2</span></span> sin<span class="f"><span>A−B</span><span>2</span></span></div>
+    <div class="eq">cos A + cos B = 2 cos<span class="f"><span>A+B</span><span>2</span></span> cos<span class="f"><span>A−B</span><span>2</span></span></div>
+    <div class="eq">cos A − cos B = −2 sin<span class="f"><span>A+B</span><span>2</span></span> sin<span class="f"><span>A−B</span><span>2</span></span></div>
+    <p class="cond">最後の式の符号 <b>−</b> を落としやすい。</p>
+  </div>
+</div>
+
+<div class="item" data-k="graph period amplitude">
+  <div class="k">グラフの性質</div>
+  <div class="v">
+    <div class="eq">y = a sin(bx + c) の周期は <span class="f"><span>2π</span><span>|b|</span></span>、振幅は |a|</div>
+    <p class="cond">tan の基本周期は π。sin・cos は 2π。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="explog">
+<h2>指数関数・対数関数</h2>
+
+<div class="item" data-k="index laws exponent rules">
+  <div class="k">指数法則</div>
+  <div class="v">
+    <div class="eq">a<sup>m</sup>a<sup>n</sup> = a<sup>m+n</sup><span class="sp"></span>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup><span class="sp"></span>(ab)<sup>n</sup> = a<sup>n</sup>b<sup>n</sup></div>
+    <div class="eq">a<sup>0</sup> = 1<span class="sp"></span>a<sup>−n</sup> = <span class="f"><span>1</span><span>a<sup>n</sup></span></span><span class="sp"></span>a<sup>m/n</sup> = <sup>n</sup>√<span class="sq">a<sup>m</sup></span></div>
+    <p class="cond">a &gt; 0。</p>
+  </div>
+</div>
+
+<div class="item" data-k="logarithm laws">
+  <div class="k">対数の性質</div>
+  <div class="v">
+    <div class="eq">log<sub>a</sub> MN = log<sub>a</sub> M + log<sub>a</sub> N<span class="sp"></span>log<sub>a</sub> <span class="f"><span>M</span><span>N</span></span> = log<sub>a</sub> M − log<sub>a</sub> N</div>
+    <div class="eq">log<sub>a</sub> M<sup>k</sup> = k log<sub>a</sub> M<span class="sp"></span>a<sup>log<sub>a</sub> M</sup> = M</div>
+    <p class="cond">定義は <b>a<sup>p</sup> = M ⇔ p = log<sub>a</sub> M</b>（a &gt; 0, a ≠ 1, M &gt; 0）。真数条件と底の条件を必ず確認すること。</p>
+  </div>
+</div>
+
+<div class="item" data-k="change of base formula">
+  <div class="k">底の変換公式</div>
+  <div class="v">
+    <div class="eq">log<sub>a</sub> b = <span class="f"><span>log<sub>c</sub> b</span><span>log<sub>c</sub> a</span></span><span class="sp"></span>log<sub>a</sub> b = <span class="f"><span>1</span><span>log<sub>b</sub> a</span></span></div>
+    <div class="eq">log<sub>a<sup>m</sup></sub> b<sup>n</sup> = <span class="f"><span>n</span><span>m</span></span> log<sub>a</sub> b</div>
+  </div>
+</div>
+
+<div class="item" data-k="number of digits common logarithm">
+  <div class="k">桁数と最高位</div>
+  <div class="v">
+    <div class="eq">N が k 桁 ⇔ k − 1 ≦ log₁₀ N &lt; k</div>
+    <div class="eq">小数第 k 位に初めて 0 でない数が現れる ⇔ −k ≦ log₁₀ N &lt; −k + 1</div>
+    <p class="cond">常用対数 log₁₀ 2 ≒ 0.3010、log₁₀ 3 ≒ 0.4771。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="seq">
+<h2>数列</h2>
+
+<div class="item" data-k="arithmetic progression">
+  <div class="k">等差数列</div>
+  <div class="v">
+    <div class="eq">a<sub>n</sub> = a₁ + (n − 1)d</div>
+    <div class="eq">S<sub>n</sub> = <span class="f"><span>n(a₁ + a<sub>n</sub>)</span><span>2</span></span> = <span class="f"><span>n{2a₁ + (n−1)d}</span><span>2</span></span></div>
+    <p class="cond">3 数が等差 ⇔ 2b = a + c。</p>
+  </div>
+</div>
+
+<div class="item" data-k="geometric progression">
+  <div class="k">等比数列</div>
+  <div class="v">
+    <div class="eq">a<sub>n</sub> = a₁ r<sup>n−1</sup></div>
+    <div class="eq">S<sub>n</sub> = <span class="f"><span>a₁(1 − r<sup>n</sup>)</span><span>1 − r</span></span>　(r ≠ 1)、　S<sub>n</sub> = na₁　(r = 1)</div>
+    <p class="cond">3 数が等比 ⇔ b² = ac。</p>
+  </div>
+</div>
+
+<div class="item" data-k="sigma sum formula">
+  <div class="k">Σ の公式</div>
+  <div class="v">
+    <div class="eq"><span class="big">Σ</span><sub>k=1</sub><sup>n</sup> k = <span class="f"><span>n(n+1)</span><span>2</span></span><span class="sp"></span><span class="big">Σ</span> k² = <span class="f"><span>n(n+1)(2n+1)</span><span>6</span></span></div>
+    <div class="eq"><span class="big">Σ</span> k³ = { <span class="f"><span>n(n+1)</span><span>2</span></span> }²<span class="sp"></span><span class="big">Σ</span><sub>k=1</sub><sup>n</sup> c = nc</div>
+    <div class="eq"><span class="big">Σ</span><sub>k=1</sub><sup>n</sup> r<sup>k−1</sup> = <span class="f"><span>r<sup>n</sup> − 1</span><span>r − 1</span></span></div>
+    <p class="cond">Σk³ = (Σk)² となるのは偶然ではなく、ニコマコスの定理として知られる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="telescoping sum partial fractions">
+  <div class="k">部分分数分解と<br>階差の利用</div>
+  <div class="v">
+    <div class="eq"><span class="f"><span>1</span><span>k(k+1)</span></span> = <span class="f"><span>1</span><span>k</span></span> − <span class="f"><span>1</span><span>k+1</span></span></div>
+    <div class="eq"><span class="f"><span>1</span><span>k(k+d)</span></span> = <span class="f"><span>1</span><span>d</span></span> ( <span class="f"><span>1</span><span>k</span></span> − <span class="f"><span>1</span><span>k+d</span></span> )</div>
+    <p class="cond">和が中間で打ち消し合う（望遠鏡和）。√ を含む場合は有理化して同様の形にする。</p>
+  </div>
+</div>
+
+<div class="item" data-k="sum general term relation">
+  <div class="k">S<sub>n</sub> と a<sub>n</sub> の関係</div>
+  <div class="v">
+    <div class="eq">a₁ = S₁<span class="sp"></span>a<sub>n</sub> = S<sub>n</sub> − S<sub>n−1</sub>　(n ≧ 2)</div>
+    <p class="cond">n = 1 の場合を別に確認する必要がある。</p>
+  </div>
+</div>
+
+<div class="item" data-k="difference sequence">
+  <div class="k">階差数列</div>
+  <div class="v">
+    <div class="eq">b<sub>n</sub> = a<sub>n+1</sub> − a<sub>n</sub> のとき　a<sub>n</sub> = a₁ + <span class="big">Σ</span><sub>k=1</sub><sup>n−1</sup> b<sub>k</sub>　(n ≧ 2)</div>
+  </div>
+</div>
+
+<div class="item" data-k="recurrence relation">
+  <div class="k">漸化式の基本形</div>
+  <div class="v">
+    <div class="eq">a<sub>n+1</sub> = pa<sub>n</sub> + q　⇒　a<sub>n+1</sub> − c = p(a<sub>n</sub> − c)　( c = <span class="f"><span>q</span><span>1−p</span></span> )</div>
+    <div class="eq">a<sub>n+1</sub> = pa<sub>n</sub> + f(n)　⇒　両辺を p<sup>n+1</sup> で割る</div>
+    <div class="eq">a<sub>n+2</sub> = pa<sub>n+1</sub> + qa<sub>n</sub>　⇒　特性方程式 x² = px + q</div>
+    <p class="cond">c は「a<sub>n+1</sub> も a<sub>n</sub> も x に置き換えた」特性方程式 x = px + q の解。分数型 a<sub>n+1</sub> = (ra<sub>n</sub>+s)/(ta<sub>n</sub>+u) は逆数をとるか特性方程式を用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="mathematical induction">
+  <div class="k">数学的帰納法</div>
+  <div class="v">
+    <div class="eq">(i) n = 1 で成立　(ii) n = k で成立 ⇒ n = k + 1 で成立</div>
+    <p class="cond">(i)(ii) からすべての自然数 n で成立。二段仮定（k, k+1 を仮定）や強帰納法も用いられる。</p>
+  </div>
+</div>
+</section>
+<!-- ============ 8 ============ -->
+<section id="vec">
+<h2>ベクトル</h2>
+
+<div class="item" data-k="dot product inner product">
+  <div class="k">内積</div>
+  <div class="v">
+    <div class="eq"><span class="vec">a</span>·<span class="vec">b</span> = |<span class="vec">a</span>||<span class="vec">b</span>| cosθ = a₁b₁ + a₂b₂ ( + a₃b₃ )</div>
+    <div class="eq">cosθ = <span class="f"><span><span class="vec">a</span>·<span class="vec">b</span></span><span>|<span class="vec">a</span>||<span class="vec">b</span>|</span></span><span class="sp"></span>|<span class="vec">a</span>|² = <span class="vec">a</span>·<span class="vec">a</span></div>
+    <p class="cond">垂直 ⇔ <b><span class="vec">a</span>·<span class="vec">b</span> = 0</b>、平行 ⇔ <b><span class="vec">b</span> = k<span class="vec">a</span></b>（成分では a₁b₂ − a₂b₁ = 0）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="magnitude expansion">
+  <div class="k">大きさの展開</div>
+  <div class="v">
+    <div class="eq">|<span class="vec">a</span> ± <span class="vec">b</span>|² = |<span class="vec">a</span>|² ± 2<span class="vec">a</span>·<span class="vec">b</span> + |<span class="vec">b</span>|²</div>
+    <p class="cond">ベクトルの等式は、まず両辺を 2 乗して内積の式に直すのが定石。</p>
+  </div>
+</div>
+
+<div class="item" data-k="triangle area vector">
+  <div class="k">三角形の面積<br>（ベクトル）</div>
+  <div class="v">
+    <div class="eq">S = <span class="f"><span>1</span><span>2</span></span> √<span class="sq">|<span class="vec">a</span>|²|<span class="vec">b</span>|² − (<span class="vec">a</span>·<span class="vec">b</span>)²</span></div>
+    <p class="cond">成分では S = ½|a₁b₂ − a₂b₁|。</p>
+  </div>
+</div>
+
+<div class="item" data-k="position vector division point">
+  <div class="k">位置ベクトル</div>
+  <div class="v">
+    <div class="eq">m : n に内分　<span class="f"><span>n<span class="vec">a</span> + m<span class="vec">b</span></span><span>m + n</span></span><span class="sp"></span>重心　<span class="f"><span><span class="vec">a</span> + <span class="vec">b</span> + <span class="vec">c</span></span><span>3</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="collinear condition three points">
+  <div class="k">3 点が一直線上</div>
+  <div class="v">
+    <div class="eq"><span class="vec">OP</span> = s<span class="vec">OA</span> + t<span class="vec">OB</span> において　s + t = 1 ⇔ P は直線 AB 上</div>
+    <p class="cond">s + t = 1, s ≧ 0, t ≧ 0 なら線分 AB 上。s + t ≦ 1, s, t ≧ 0 なら三角形 OAB の内部および周。</p>
+  </div>
+</div>
+
+<div class="item" data-k="vector equation of line plane">
+  <div class="k">直線・平面の方程式</div>
+  <div class="v">
+    <div class="eq">直線　<span class="vec">p</span> = <span class="vec">a</span> + t<span class="vec">d</span>　（<span class="vec">d</span> は方向ベクトル）</div>
+    <div class="eq">平面　<span class="vec">p</span> = <span class="vec">a</span> + s<span class="vec">u</span> + t<span class="vec">v</span>　／　<span class="vec">n</span>·(<span class="vec">p</span> − <span class="vec">a</span>) = 0</div>
+    <p class="cond"><span class="vec">n</span> は法線ベクトル。平面 ax + by + cz + d = 0 の法線ベクトルは (a, b, c)。</p>
+  </div>
+</div>
+
+<div class="item" data-k="sphere equation">
+  <div class="k">球面の方程式</div>
+  <div class="v">
+    <div class="eq">(x − p)² + (y − q)² + (z − r)² = R²</div>
+  </div>
+</div>
+
+<div class="item" data-k="linear independence decomposition">
+  <div class="k">一次独立</div>
+  <div class="v">
+    <div class="eq"><span class="vec">a</span>, <span class="vec">b</span> が一次独立のとき　s<span class="vec">a</span> + t<span class="vec">b</span> = s′<span class="vec">a</span> + t′<span class="vec">b</span> ⇒ s = s′, t = t′</div>
+    <p class="cond">係数比較ができる根拠。<span class="vec">a</span> ≠ <span class="vec">0</span>, <span class="vec">b</span> ≠ <span class="vec">0</span> かつ平行でないこと。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="diff">
+<h2>微分法</h2>
+
+<div class="item" data-k="definition of derivative first principles">
+  <div class="k">微分係数の定義</div>
+  <div class="v">
+    <div class="eq">f ′(a) = lim<sub>h→0</sub> <span class="f"><span>f(a+h) − f(a)</span><span>h</span></span> = lim<sub>x→a</sub> <span class="f"><span>f(x) − f(a)</span><span>x − a</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="power rule product quotient chain rule">
+  <div class="k">微分の基本公式</div>
+  <div class="v">
+    <div class="eq">(x<sup>n</sup>)′ = nx<sup>n−1</sup><span class="sp"></span>(c)′ = 0</div>
+    <div class="eq">(fg)′ = f ′g + fg′<span class="sp"></span>( <span class="f"><span>f</span><span>g</span></span> )′ = <span class="f"><span>f ′g − fg′</span><span>g²</span></span></div>
+    <div class="eq">合成関数　<span class="f"><span>dy</span><span>dx</span></span> = <span class="f"><span>dy</span><span>du</span></span> · <span class="f"><span>du</span><span>dx</span></span><span class="sp"></span>逆関数　<span class="f"><span>dy</span><span>dx</span></span> = <span class="f"><span>1</span><span>dx/dy</span></span></div>
+  </div>
+</div>
+
+<div class="item" data-k="derivatives of elementary functions">
+  <div class="k">主要な関数の導関数</div>
+  <div class="v">
+    <div class="eq">(sin x)′ = cos x<span class="sp"></span>(cos x)′ = −sin x<span class="sp"></span>(tan x)′ = <span class="f"><span>1</span><span>cos²x</span></span></div>
+    <div class="eq">(e<sup>x</sup>)′ = e<sup>x</sup><span class="sp"></span>(a<sup>x</sup>)′ = a<sup>x</sup> log a</div>
+    <div class="eq">(log x)′ = <span class="f"><span>1</span><span>x</span></span><span class="sp"></span>(log |x|)′ = <span class="f"><span>1</span><span>x</span></span><span class="sp"></span>(log<sub>a</sub> x)′ = <span class="f"><span>1</span><span>x log a</span></span></div>
+    <p class="cond">積や商が複雑なときは両辺の対数をとって微分する（対数微分法）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="tangent normal line">
+  <div class="k">接線と法線</div>
+  <div class="v">
+    <div class="eq">接線　y − f(a) = f ′(a)(x − a)</div>
+    <div class="eq">法線　y − f(a) = −<span class="f"><span>1</span><span>f ′(a)</span></span> (x − a)</div>
+    <p class="cond">曲線外の点から引く接線は、接点を (t, f(t)) とおいて通過条件を立てる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="increasing decreasing extremum">
+  <div class="k">増減と極値</div>
+  <div class="v">
+    <div class="eq">f ′(x) &gt; 0 で増加、f ′(x) &lt; 0 で減少</div>
+    <div class="eq">f ′(a) = 0 かつ f ′(x) の符号が変化 ⇒ x = a で極値</div>
+    <p class="cond">f ′(a) = 0 は極値をとるための必要条件にすぎない（y = x³ が反例）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="concavity inflection point second derivative">
+  <div class="k">凹凸と変曲点</div>
+  <div class="v">
+    <div class="eq">f ″(x) &gt; 0 で下に凸、f ″(x) &lt; 0 で上に凸</div>
+    <p class="cond">f ″(x) の符号が変わる点が変曲点。極値判定には f ′(a) = 0, f ″(a) &lt; 0 ⇒ 極大 も使える。</p>
+  </div>
+</div>
+
+<div class="item" data-k="cubic equation number of real roots">
+  <div class="k">三次方程式の実数解の個数</div>
+  <div class="v">
+    <div class="eq">(極大値) × (極小値) &lt; 0 ⇔ 異なる 3 個の実数解</div>
+    <p class="cond">= 0 なら 2 個（重解を含む）、&gt; 0 なら 1 個。定数分離 <b>f(x) = k</b> の形にしてグラフの交点数で考えるのが基本。</p>
+  </div>
+</div>
+
+<div class="item" data-k="mean value theorem rolle">
+  <div class="k">平均値の定理</div>
+  <div class="v">
+    <div class="eq"><span class="f"><span>f(b) − f(a)</span><span>b − a</span></span> = f ′(c)　( a &lt; c &lt; b )</div>
+    <p class="cond">[a, b] で連続、(a, b) で微分可能であることが前提。f(a) = f(b) の場合がロルの定理。</p>
+  </div>
+</div>
+
+<div class="item" data-k="velocity acceleration approximation">
+  <div class="k">速度・加速度・近似</div>
+  <div class="v">
+    <div class="eq">v = <span class="f"><span>dx</span><span>dt</span></span><span class="sp"></span>α = <span class="f"><span>dv</span><span>dt</span></span> = <span class="f"><span>d²x</span><span>dt²</span></span></div>
+    <div class="eq">|h| が微小のとき　f(a + h) ≒ f(a) + f ′(a)h</div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="integ">
+<h2>積分法</h2>
+
+<div class="item" data-k="indefinite integral basic">
+  <div class="k">不定積分の基本</div>
+  <div class="v">
+    <div class="eq">∫x<sup>n</sup> dx = <span class="f"><span>1</span><span>n+1</span></span> x<sup>n+1</sup> + C　(n ≠ −1)<span class="sp"></span>∫<span class="f"><span>1</span><span>x</span></span> dx = log |x| + C</div>
+    <div class="eq">∫e<sup>x</sup> dx = e<sup>x</sup> + C<span class="sp"></span>∫a<sup>x</sup> dx = <span class="f"><span>a<sup>x</sup></span><span>log a</span></span> + C</div>
+    <div class="eq">∫sin x dx = −cos x + C<span class="sp"></span>∫cos x dx = sin x + C</div>
+    <div class="eq">∫<span class="f"><span>1</span><span>cos²x</span></span> dx = tan x + C<span class="sp"></span>∫tan x dx = −log |cos x| + C</div>
+    <div class="eq">∫(ax + b)<sup>n</sup> dx = <span class="f"><span>1</span><span>a(n+1)</span></span> (ax+b)<sup>n+1</sup> + C</div>
+  </div>
+</div>
+
+<div class="item" data-k="integration by substitution parts">
+  <div class="k">置換積分・部分積分</div>
+  <div class="v">
+    <div class="eq">∫f(g(x))g′(x) dx = ∫f(u) du<span class="sp"></span>∫<span class="f"><span>f ′(x)</span><span>f(x)</span></span> dx = log |f(x)| + C</div>
+    <div class="eq">∫f g′ dx = f g − ∫f ′g dx</div>
+    <p class="cond">部分積分は「多項式 × 指数・三角」なら多項式を f に、「log を含む」なら log を f にとる。定積分では積分区間の変換を忘れないこと。</p>
+  </div>
+</div>
+
+<div class="item" data-k="definite integral properties even odd">
+  <div class="k">定積分の性質</div>
+  <div class="v">
+    <div class="eq">∫<sub>a</sub><sup>b</sup> f dx = −∫<sub>b</sub><sup>a</sup> f dx<span class="sp"></span>∫<sub>a</sub><sup>b</sup> = ∫<sub>a</sub><sup>c</sup> + ∫<sub>c</sub><sup>b</sup></div>
+    <div class="eq">偶関数　∫<sub>−a</sub><sup>a</sup> f dx = 2∫<sub>0</sub><sup>a</sup> f dx<span class="sp"></span>奇関数　∫<sub>−a</sub><sup>a</sup> f dx = 0</div>
+    <div class="eq"><span class="f"><span>d</span><span>dx</span></span> ∫<sub>a</sub><sup>x</sup> f(t) dt = f(x)</div>
+    <p class="cond">∫<sub>a</sub><sup>b</sup> f(t)dt は定数であるから、これを k とおいて方程式を立てる問題が頻出。</p>
+  </div>
+</div>
+
+<div class="item" data-k="one sixth formula area parabola">
+  <div class="k">1/6 公式</div>
+  <div class="v">
+    <div class="eq">∫<sub>s₁</sub><sup>s₂</sup> (x − s₁)(x − s₂) dx = −<span class="f"><span>1</span><span>6</span></span> (s₂ − s₁)³</div>
+    <p class="cond">放物線と直線で囲まれた面積は <b>S = |a|(s₂ − s₁)³ / 6</b>。s₁, s₂ は交点の x 座標。</p>
+  </div>
+</div>
+
+<div class="item" data-k="one twelfth one third formula">
+  <div class="k">1/12・1/3 公式</div>
+  <div class="v">
+    <div class="eq">放物線と接線 2 本　S = <span class="f"><span>|a|(s₂ − s₁)³</span><span>12</span></span></div>
+    <div class="eq">三次曲線と接線　S = <span class="f"><span>|a|(s₂ − s₁)⁴</span><span>12</span></span></div>
+    <div class="eq">∫<sub>s₁</sub><sup>s₂</sup> (x − s₁)²(x − s₂) dx = −<span class="f"><span>1</span><span>12</span></span> (s₂ − s₁)⁴</div>
+    <p class="cond">放物線と 1 本の接線および直線 x = k で囲む場合は <b>1/3 公式</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="area between curves">
+  <div class="k">面積</div>
+  <div class="v">
+    <div class="eq">S = ∫<sub>a</sub><sup>b</sup> { f(x) − g(x) } dx　( f ≧ g )</div>
+    <p class="cond">y 軸方向に積分する場合は x = f(y) として ∫(右 − 左)dy。</p>
+  </div>
+</div>
+
+<div class="item" data-k="volume of revolution solid">
+  <div class="k">体積</div>
+  <div class="v">
+    <div class="eq">V = ∫<sub>a</sub><sup>b</sup> S(x) dx<span class="sp"></span>x 軸回転　V = π∫<sub>a</sub><sup>b</sup> y² dx</div>
+    <div class="eq">y 軸回転　V = π∫<sub>c</sub><sup>d</sup> x² dy</div>
+  </div>
+</div>
+
+<div class="item" data-k="arc length parametric">
+  <div class="k">曲線の長さ（数学III）</div>
+  <div class="v">
+    <div class="eq">L = ∫<sub>a</sub><sup>b</sup> √<span class="sq">1 + (<span class="f"><span>dy</span><span>dx</span></span>)²</span> dx</div>
+    <div class="eq">媒介変数表示　L = ∫<sub>α</sub><sup>β</sup> √<span class="sq">(<span class="f"><span>dx</span><span>dt</span></span>)² + (<span class="f"><span>dy</span><span>dt</span></span>)²</span> dt</div>
+  </div>
+</div>
+
+<div class="item" data-k="riemann sum limit">
+  <div class="k">区分求積法</div>
+  <div class="v">
+    <div class="eq">lim<sub>n→∞</sub> <span class="f"><span>1</span><span>n</span></span> <span class="big">Σ</span><sub>k=1</sub><sup>n</sup> f( <span class="f"><span>k</span><span>n</span></span> ) = ∫<sub>0</sub><sup>1</sup> f(x) dx</div>
+    <p class="cond">1/n を dx、k/n を x と読み替える。和の極限を積分に直す代表的手法。</p>
+  </div>
+</div>
+
+<div class="item" data-k="integral inequality estimation">
+  <div class="k">定積分と不等式</div>
+  <div class="v">
+    <div class="eq">a ≦ x ≦ b で f(x) ≧ g(x) ⇒ ∫<sub>a</sub><sup>b</sup> f dx ≧ ∫<sub>a</sub><sup>b</sup> g dx</div>
+    <p class="cond">数列の和を面積で評価し、はさみうちの原理につなげる。</p>
+  </div>
+</div>
+</section>
+<!-- ============ 11 ============ -->
+<section id="lim">
+<h2>極限（数学III）</h2>
+
+<div class="item" data-k="limit of sequence convergence">
+  <div class="k">数列の極限</div>
+  <div class="v">
+    <div class="eq">|r| &lt; 1 ⇒ lim r<sup>n</sup> = 0<span class="sp"></span>r = 1 ⇒ 1<span class="sp"></span>それ以外は発散</div>
+    <div class="eq">無限等比級数　<span class="big">Σ</span><sub>n=1</sub><sup>∞</sup> ar<sup>n−1</sup> = <span class="f"><span>a</span><span>1 − r</span></span>　( |r| &lt; 1 )</div>
+    <p class="cond">級数が収束するには少なくとも lim a<sub>n</sub> = 0 が必要（十分ではない）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="squeeze theorem sandwich">
+  <div class="k">はさみうちの原理</div>
+  <div class="v">
+    <div class="eq">a<sub>n</sub> ≦ c<sub>n</sub> ≦ b<sub>n</sub> かつ lim a<sub>n</sub> = lim b<sub>n</sub> = α ⇒ lim c<sub>n</sub> = α</div>
+  </div>
+</div>
+
+<div class="item" data-k="important limits sinx over x e">
+  <div class="k">基本的な極限</div>
+  <div class="v">
+    <div class="eq">lim<sub>x→0</sub> <span class="f"><span>sin x</span><span>x</span></span> = 1<span class="sp"></span>lim<sub>x→0</sub> <span class="f"><span>1 − cos x</span><span>x²</span></span> = <span class="f"><span>1</span><span>2</span></span></div>
+    <div class="eq">lim<sub>x→0</sub> (1 + x)<sup>1/x</sup> = e<span class="sp"></span>lim<sub>n→∞</sub> (1 + <span class="f"><span>1</span><span>n</span></span>)<sup>n</sup> = e</div>
+    <div class="eq">lim<sub>x→0</sub> <span class="f"><span>e<sup>x</sup> − 1</span><span>x</span></span> = 1<span class="sp"></span>lim<sub>x→0</sub> <span class="f"><span>log(1+x)</span><span>x</span></span> = 1</div>
+    <p class="cond">sin x / x の極限は x が弧度法のときのみ成立する。e ≒ 2.71828。</p>
+  </div>
+</div>
+
+<div class="item" data-k="continuity intermediate value theorem">
+  <div class="k">中間値の定理</div>
+  <div class="v">
+    <div class="eq">f が [a, b] で連続、f(a) ≠ f(b) ⇒ f(a) と f(b) の間の任意の値をとる</div>
+    <p class="cond">f(a)f(b) &lt; 0 ならば区間内に少なくとも 1 つの実数解が存在する。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="cplx">
+<h2>複素数平面・二次曲線</h2>
+
+<div class="item" data-k="polar form complex number modulus argument">
+  <div class="k">極形式</div>
+  <div class="v">
+    <div class="eq">z = r(cosθ + i sinθ)<span class="sp"></span>r = |z| = √<span class="sq">a² + b²</span></div>
+    <div class="eq">z₁z₂ = r₁r₂{cos(θ₁+θ₂) + i sin(θ₁+θ₂)}<span class="sp"></span><span class="f"><span>z₁</span><span>z₂</span></span> = <span class="f"><span>r₁</span><span>r₂</span></span>{cos(θ₁−θ₂) + i sin(θ₁−θ₂)}</div>
+    <p class="cond">積は「大きさを掛け、偏角を足す」。z 倍は原点中心の回転と拡大を表す。</p>
+  </div>
+</div>
+
+<div class="item" data-k="de moivre theorem">
+  <div class="k">ド・モアブルの定理</div>
+  <div class="v">
+    <div class="eq">(cosθ + i sinθ)<sup>n</sup> = cos nθ + i sin nθ</div>
+    <p class="cond">n は整数。1 の n 乗根は cos(2kπ/n) + i sin(2kπ/n)（k = 0, 1, …, n−1）で、複素数平面上の正 n 角形の頂点をなす。</p>
+  </div>
+</div>
+
+<div class="item" data-k="rotation complex plane">
+  <div class="k">回転と図形</div>
+  <div class="v">
+    <div class="eq">点 z を点 α のまわりに θ 回転　w = (cosθ + i sinθ)(z − α) + α</div>
+    <div class="eq">|z − α| = r は中心 α、半径 r の円</div>
+    <div class="eq">|z − α| = |z − β| は線分 αβ の垂直二等分線</div>
+    <p class="cond">3 点の位置関係は (z₃ − z₁)/(z₂ − z₁) の値で判定する。実数なら一直線上、純虚数なら垂直。</p>
+  </div>
+</div>
+
+<div class="item" data-k="parabola ellipse hyperbola">
+  <div class="k">二次曲線</div>
+  <div class="v">
+    <div class="eq">放物線　y² = 4px　焦点 (p, 0)、準線 x = −p</div>
+    <div class="eq">楕円　<span class="f"><span>x²</span><span>a²</span></span> + <span class="f"><span>y²</span><span>b²</span></span> = 1　焦点 (±√<span class="sq">a²−b²</span>, 0)、焦点距離の和 2a</div>
+    <div class="eq">双曲線　<span class="f"><span>x²</span><span>a²</span></span> − <span class="f"><span>y²</span><span>b²</span></span> = 1　焦点 (±√<span class="sq">a²+b²</span>, 0)、漸近線 y = ±<span class="f"><span>b</span><span>a</span></span>x</div>
+    <p class="cond">楕円は a &gt; b &gt; 0 のとき。双曲線は焦点距離の差が 2a で一定。</p>
+  </div>
+</div>
+
+<div class="item" data-k="parametric polar coordinates">
+  <div class="k">媒介変数表示・極座標</div>
+  <div class="v">
+    <div class="eq">円　x = r cosθ, y = r sinθ<span class="sp"></span>楕円　x = a cosθ, y = b sinθ</div>
+    <div class="eq">x = r cosθ,　y = r sinθ,　r² = x² + y²,　tanθ = <span class="f"><span>y</span><span>x</span></span></div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="prob">
+<h2>場合の数と確率</h2>
+
+<div class="item" data-k="permutation combination">
+  <div class="k">順列と組合せ</div>
+  <div class="v">
+    <div class="eq"><sub>n</sub>P<sub>r</sub> = <span class="f"><span>n!</span><span>(n−r)!</span></span><span class="sp"></span><sub>n</sub>C<sub>r</sub> = <span class="f"><span>n!</span><span>r!(n−r)!</span></span></div>
+    <div class="eq"><sub>n</sub>C<sub>r</sub> = <sub>n</sub>C<sub>n−r</sub><span class="sp"></span><sub>n</sub>C<sub>r</sub> = <sub>n−1</sub>C<sub>r−1</sub> + <sub>n−1</sub>C<sub>r</sub></div>
+    <p class="cond">円順列は (n−1)!、じゅず順列は (n−1)!/2。重複順列は n<sup>r</sup>、重複組合せは <sub>n+r−1</sub>C<sub>r</sub>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="permutation with repetition">
+  <div class="k">同じものを含む順列</div>
+  <div class="v">
+    <div class="eq"><span class="f"><span>n!</span><span>p! q! r!</span></span>　( p + q + r = n )</div>
+    <p class="cond">最短経路の数え上げもこの形に帰着する。</p>
+  </div>
+</div>
+
+<div class="item" data-k="probability addition rule complement">
+  <div class="k">確率の基本法則</div>
+  <div class="v">
+    <div class="eq">P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</div>
+    <div class="eq">P(<span class="ov">A</span>) = 1 − P(A)</div>
+    <p class="cond">「少なくとも 1 つ」は余事象で処理するのが定石。</p>
+  </div>
+</div>
+
+<div class="item" data-k="conditional probability independence bayes">
+  <div class="k">条件付き確率</div>
+  <div class="v">
+    <div class="eq">P<sub>A</sub>(B) = <span class="f"><span>P(A ∩ B)</span><span>P(A)</span></span><span class="sp"></span>P(A ∩ B) = P(A)P<sub>A</sub>(B)</div>
+    <p class="cond">独立 ⇔ P(A ∩ B) = P(A)P(B)。原因の確率（ベイズの定理）は、結果から遡って条件付き確率を計算するもの。</p>
+  </div>
+</div>
+
+<div class="item" data-k="repeated trials binomial distribution">
+  <div class="k">反復試行</div>
+  <div class="v">
+    <div class="eq"><sub>n</sub>C<sub>r</sub> p<sup>r</sup>(1 − p)<sup>n−r</sup></div>
+    <p class="cond">確率 p の事象が n 回中 r 回起こる確率。二項分布 B(n, p) では平均 <b>np</b>、分散 <b>np(1−p)</b>。</p>
+  </div>
+</div>
+
+<div class="item" data-k="expected value variance standard deviation">
+  <div class="k">期待値と分散</div>
+  <div class="v">
+    <div class="eq">E(X) = <span class="big">Σ</span> x<sub>k</sub>p<sub>k</sub><span class="sp"></span>V(X) = E(X²) − {E(X)}²</div>
+    <div class="eq">E(aX + b) = aE(X) + b<span class="sp"></span>V(aX + b) = a²V(X)</div>
+    <p class="cond">標準偏差 σ(X) = √V(X)。独立なら E(XY) = E(X)E(Y)、V(X+Y) = V(X) + V(Y)。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="numth">
+<h2>整数の性質</h2>
+
+<div class="item" data-k="division algorithm gcd lcm">
+  <div class="k">約数・倍数</div>
+  <div class="v">
+    <div class="eq">a = bq + r　( 0 ≦ r &lt; b )</div>
+    <div class="eq">gcd(a, b) × lcm(a, b) = ab</div>
+    <p class="cond">ユークリッドの互除法は gcd(a, b) = gcd(b, r) を反復する。</p>
+  </div>
+</div>
+
+<div class="item" data-k="number of divisors sum">
+  <div class="k">約数の個数と総和</div>
+  <div class="v">
+    <div class="eq">N = p<sup>e₁</sup>q<sup>e₂</sup>r<sup>e₃</sup> のとき　個数 = (e₁+1)(e₂+1)(e₃+1)</div>
+    <div class="eq">総和 = (1 + p + … + p<sup>e₁</sup>)(1 + q + … + q<sup>e₂</sup>)(1 + r + … + r<sup>e₃</sup>)</div>
+  </div>
+</div>
+
+<div class="item" data-k="congruence modular arithmetic">
+  <div class="k">合同式</div>
+  <div class="v">
+    <div class="eq">a ≡ b, c ≡ d (mod m) ⇒ a ± c ≡ b ± d,　ac ≡ bd,　a<sup>n</sup> ≡ b<sup>n</sup></div>
+    <p class="cond">除法は一般には成立しない。余りの周期性を利用して大きな累乗の余りを求める。</p>
+  </div>
+</div>
+
+<div class="item" data-k="linear diophantine equation">
+  <div class="k">一次不定方程式</div>
+  <div class="v">
+    <div class="eq">ax + by = c は gcd(a, b) が c を割り切るとき整数解をもつ</div>
+    <p class="cond">特殊解 (x₀, y₀) を互除法で 1 組見つければ、一般解は <b>x = x₀ + (b/g)t、y = y₀ − (a/g)t</b>（g = gcd(a,b)）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="base n representation">
+  <div class="k">n 進法</div>
+  <div class="v">
+    <div class="eq">a<sub>k</sub>n<sup>k</sup> + … + a₁n + a₀</div>
+    <p class="cond">十進法への変換は展開、n 進法への変換は n で割った余りを下から並べる。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 15 ============ -->
+<section id="plane">
+<h2>平面図形の定理</h2>
+
+<div class="item" data-k="angle bisector theorem">
+  <div class="k">角の二等分線</div>
+  <div class="v">
+    <div class="eq">AD が ∠A の二等分線 ⇒ BD : DC = AB : AC</div>
+    <p class="cond">外角の二等分線でも同じ比が成り立つ（外分点になる）。</p>
+  </div>
+</div>
+
+<div class="item" data-k="median theorem stewart">
+  <div class="k">中線定理</div>
+  <div class="v">
+    <div class="eq">AB² + AC² = 2(AM² + BM²)</div>
+    <p class="cond">M は辺 BC の中点。パップスの定理とも呼ばれる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="power of a point">
+  <div class="k">方べきの定理</div>
+  <div class="v">
+    <div class="eq">PA · PB = PC · PD<span class="sp"></span>PA · PB = PT²</div>
+    <p class="cond">P を通る 2 直線が円と交わるとき（内部・外部いずれでも）成立。PT は接線の長さ。</p>
+  </div>
+</div>
+
+<div class="item" data-k="ceva menelaus theorem">
+  <div class="k">チェバ・メネラウスの定理</div>
+  <div class="v">
+    <div class="eq">チェバ　<span class="f"><span>BP</span><span>PC</span></span> · <span class="f"><span>CQ</span><span>QA</span></span> · <span class="f"><span>AR</span><span>RB</span></span> = 1</div>
+    <div class="eq">メネラウス　同じ形の積が 1（1 直線が三辺またはその延長を切るとき）</div>
+    <p class="cond">頂点 → 分点 → 頂点 → … と一周する順に辿ると比を書き下しやすい。</p>
+  </div>
+</div>
+
+<div class="item" data-k="inscribed angle circle theorem">
+  <div class="k">円周角と接弦定理</div>
+  <div class="v">
+    <div class="eq">円周角 = <span class="f"><span>1</span><span>2</span></span> × 中心角</div>
+    <div class="eq">接弦定理　接線と弦のなす角 = その弦に対する円周角</div>
+    <p class="cond">円に内接する四角形は対角の和が 180°。逆も成立し、4 点が同一円周上にあることの証明に用いる。</p>
+  </div>
+</div>
+
+<div class="item" data-k="five centres triangle">
+  <div class="k">三角形の五心</div>
+  <div class="v">
+    <div class="eq">重心は中線を 2 : 1 に内分する</div>
+    <p class="cond">外心は各辺の垂直二等分線、内心は角の二等分線、垂心は各頂点からの垂線の交点。傍心は 1 つの内角と 2 つの外角の二等分線の交点で 3 つ存在する。</p>
+  </div>
+</div>
+</section>
+</main>
+</div>
+
+<footer>
+  高校数学 公式・定理集　—　解は s₁, s₂, s₃ と表記。<a class="top" href="#">先頭へ戻る</a>
+</footer>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+
+  items.forEach(function (it) {
+    it.dataset.text = (it.textContent + ' ' + (it.dataset.k || '')).toLowerCase().replace(/\s+/g, ' ');
+  });
+
+  function setCount(n) {
+    count.textContent = n + ' 件';
+  }
+
+  function filter() {
+    var v = q.value.trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function (it) {
+      var hit = !v || it.dataset.text.indexOf(v) !== -1;
+      it.hidden = !hit;
+      if (hit) shown++;
+    });
+    sections.forEach(function (s) {
+      s.hidden = !s.querySelector('.item:not([hidden])');
+    });
+    empty.classList.toggle('show', shown === 0);
+    setCount(shown);
+  }
+
+  q.addEventListener('input', filter);
+  q.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { q.value = ''; filter(); }
+  });
+  setCount(items.length);
+
+  if ('IntersectionObserver' in window) {
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var a = map[e.target.id];
+        if (!a) return;
+        if (e.isIntersecting) {
+          links.forEach(function (l) { l.classList.remove('here'); });
+          a.classList.add('here');
+        }
+      });
+    }, { rootMargin: '0px 0px -75% 0px' });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
